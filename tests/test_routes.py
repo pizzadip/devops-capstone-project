@@ -216,3 +216,24 @@ class TestAccountService(TestCase):
         """It should not Delete an Account that does not exist"""
         response = self.client.delete(f"{BASE_URL}/0")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_list_accounts(self):
+        """It should List all Accounts"""
+        # create a bunch of accounts
+        self._create_accounts(5)
+
+        # list the accounts
+        response = self.client.get(BASE_URL)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        data = response.get_json()
+        self.assertEqual(len(data), 5)
+
+    def test_list_accounts_empty(self):
+        """It should List all Accounts when database is empty"""
+        response = self.client.get(BASE_URL)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        data = response.get_json()
+        self.assertEqual(data, [])
+       

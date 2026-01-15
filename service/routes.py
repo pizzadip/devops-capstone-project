@@ -63,14 +63,13 @@ def create_accounts():
 
 # ... place you code here to LIST accounts ...
 
-@app.route("/accounts/<int:account_id>", methods=["GET"])
-def get_accounts(account_id):
-    """Read a single Account"""
-    account = Account.find(account_id)
-    if not account:
-        abort(status.HTTP_404_NOT_FOUND, f"Account with id '{account_id}' was not found.")
-
-    return account.serialize(), status.HTTP_200_OK
+@app.route("/accounts", methods=["GET"])
+def list_accounts():
+    """List all Accounts"""
+    app.logger.info("Request to list Accounts")
+    accounts = Account.all()
+    results = [account.serialize() for account in accounts]
+    return jsonify(results), status.HTTP_200_OK
 
 
 ######################################################################
@@ -79,7 +78,14 @@ def get_accounts(account_id):
 
 # ... place you code here to READ an account ...
 
+@app.route("/accounts/<int:account_id>", methods=["GET"])
+def get_accounts(account_id):
+    """Read a single Account"""
+    account = Account.find(account_id)
+    if not account:
+        abort(status.HTTP_404_NOT_FOUND, f"Account with id '{account_id}' was not found.")
 
+    return account.serialize(), status.HTTP_200_OK
 
 
 ######################################################################

@@ -1,8 +1,8 @@
+[![CI](https://github.com/pizzadip/devops-capstone-project/actions/workflows/ci.yml/badge.svg)](https://github.com/pizzadip/devops-capstone-project/actions/workflows/ci.yml)
 
 # DevOps Capstone Project
 ...
 
-[![CI](https://github.com/pizzadip/devops-capstone-project/actions/workflows/ci.yml/badge.svg)](https://github.com/pizzadip/devops-capstone-project/actions/workflows/ci.yml)
 
 # DevOps Capstone Template
 
